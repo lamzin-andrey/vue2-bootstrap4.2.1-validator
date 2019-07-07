@@ -109,7 +109,7 @@ window.app = new Vue({
 
 ## Вёрстка
 
-Надо добавить лирективу вида v-b421validators="'password,required,length3_16'"
+Надо добавить директиву вида v-b421validators="'password,required,length3_16'"
 
 ## Реализованные значения атрибута v-b421validators:
 
