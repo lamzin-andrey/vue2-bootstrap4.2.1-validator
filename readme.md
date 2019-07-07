@@ -15,7 +15,7 @@
  
 Работает со стандартной версткой полей ввода bootstrap 4.2.1 вида
 
-`
+```html
 <div class="col-md-6 mb-3">
   <label for="iPassword">Password</label>
   <input type="password" class="form-control is-invalid" id="iPassword" placeholder="Enter password" required>
@@ -23,7 +23,7 @@
 	Password must containts numbers and letters different case: upper and lower.
   </div>
 </div>
-`
+```
 
 Для указанного примера программист может добавить 
 атрибут v-b421validators="'password,required,length3_16'" полю input[type=password]. (кавычки внутри кавычек важны).
@@ -44,7 +44,8 @@
 
 ## (файл app.js):
 
-`window.Vue = require('vue');
+```javascript
+window.Vue = require('vue');
 
 //Интернациализация (Это важно, так как сейчас валидатор фактически зависит от функции $t которую предоставляет vue-i18n v7.0.0)
 //Он обращается к ней как к vnode.context.$root.$t - это не очень гибко, но в принципе даёт возможность для использования других решений для локализации.
@@ -104,7 +105,8 @@ window.app = new Vue({
    }//end methods
 
 }).$mount('#wrapper');
-`
+```
+
 ## Вёрстка
 
 Надо добавить лирективу вида v-b421validators="'password,required,length3_16'"
@@ -112,8 +114,11 @@ window.app = new Vue({
 ## Реализованные значения атрибута v-b421validators:
 
 `email`
+
 `password`
+
 `required`
+
 `lengthMIN_MAX` (например `length3_16`)
 
 ## Зависимости:
