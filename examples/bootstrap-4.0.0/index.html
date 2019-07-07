@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Usage vue directive v-b421validators with bootstrap 4.0.0</title>
+	<link rel="stylesheet" type="text/css" href="./bootstrap-4.0.0-dist/css/bootstrap.min.css">
+	<meta charset="windows-1251">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="container">
+		<div id="appB4" class="mx-auto mt-3 border border-success  pb-3 rounded" style="max-width:480px">
+			<div class="bg-success text-light p-3 ">
+				<h4 class="panel-title ">{{ $t('app.SigninFormLabel') }}</h4>
+			</div>
+			<div class="px-3">
+				<form @submit="onSubmitLoginForm" class="" action="" method="POST"  novalidate="novalidate">
+					<!-- Email -->
+					<div class="form-group ">
+						<label for="inputEmail" >{{ $t('app.email') }}</label>
+						<input
+                            v-model="email"
+							v-b421validators="'required,email'"
+							:placeholder="$t('app.EnterEmail')"
+						type="email" class="form-control" id="inputEmail"  required>
+						<div class="invalid-feedback"></div>
+					</div>
+
+					
+					<!-- Password -->
+					<div class="form-group ">
+						<label for="inputPassword" >{{ $t('app.Passsword') }}</label>
+						<input 
+                            v-model="password"
+							v-b421validators="'required,length3_16,password'"
+							:placeholder="$t('app.EnterPassword')"
+						type="password" class="form-control" id="inputPassword"  required>
+						<div class="invalid-feedback"></div>
+					</div>
+
+					
+					
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary">{{ $t('app.LoginFormButtonText') }}</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script charset="UTF-8" src="./outputforb4.x.js"></script>
+	<script src="./bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
