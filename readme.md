@@ -109,7 +109,7 @@ window.app = new Vue({
 
 ## Вёрстка
 
-Надо добавить директиву вида v-b421validators="'password,required,length3_16'" полю ввода.
+Надо добавить директиву вида `v-b421validators="'password,required,length3_16'"` полю ввода. Кавычки внутри кавыяек важны.
 
 ## Реализованные значения атрибута v-b421validators:
 
