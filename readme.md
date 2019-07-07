@@ -129,14 +129,14 @@ examples/package.json,
 
 npm-help.txt
 
-и подключаемых в app.js файлов из 
-https://github.com/lamzin-andrey/personalsite/tree/master/j/sources/bootstrap421-validators
+и подключаемых в app.js файлов из данного репозитория
+https://github.com/lamzin-andrey/vue2-bootstrap4.2.1-validator
 
 используется файл 
-https://github.com/lamzin-andrey/personalsite/blob/master/j/sources/landlib/nodom/validator.js
+https://github.com/lamzin-andrey/landlib/blob/master/nodom/validator.js
 
-Позже вынесу в отдельный репозиторий, чтобы было проще.
-Ещё позднее экспортирую npm пакет.
+Позже экспортирую npm пакет.
+
 
 
 
