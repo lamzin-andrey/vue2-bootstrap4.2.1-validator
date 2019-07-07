@@ -134,6 +134,8 @@ https://github.com/lamzin-andrey/vue2-bootstrap4.2.1-validator
 
 используется файл 
 https://github.com/lamzin-andrey/landlib/blob/master/nodom/validator.js
+из репозитория 
+https://github.com/lamzin-andrey/landlib/
 
 Позже экспортирую npm пакет.
 
