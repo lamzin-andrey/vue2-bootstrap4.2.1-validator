@@ -1,6 +1,5 @@
 Vue.directive('b421validators', {
     inserted:function(el, binding, vnode) {
-        console.log('Hello! b421validators!');
         /**
          * @description Set event listener on form input and form
          * Установить обработчик события на поле ввода и форме
@@ -18,10 +17,12 @@ Vue.directive('b421validators', {
         }
 
         let $el = $(el), $form = $el.parents('form').first(),
-            args = String(binding.expression).split(','), i, func,
+            args = String(binding.value).split(','), i, func,
             validator = vnode.context.$root.formInputValidator,
             aValidatorMethodArgs = [],
-            bLengthCond = true;
+            bLengthCond = true,
+            /** @let Аргумент валидации equiv*/
+            equivArg = '';
         for (i = 0; i < args.length; i++) {
             func = args[i].trim().replace(/["'\d_]/g, '');
             if (func == 'length') {
@@ -29,6 +30,17 @@ Vue.directive('b421validators', {
                 aValidatorMethodArgs = args[i].trim().replace(func, '').split('_');
                 if (aValidatorMethodArgs.length == 2) {
                     bLengthCond = true;
+                }
+            }
+            if (func.indexOf('equiv') == 0) {
+                func = 'equiv';
+                bLengthCond = false;
+                aValidatorMethodArgs = [];
+                equivArg = args[i].trim().replace(func + '_', '');
+                if (String(equivArg).length) {
+                    bLengthCond = true;
+                    aValidatorMethodArgs[0] = equivArg;
+                    aValidatorMethodArgs.length = 1;
                 }
             }
             if (validator && validator[func] instanceof Function && bLengthCond) {

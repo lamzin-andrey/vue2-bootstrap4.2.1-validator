@@ -74,16 +74,42 @@ class B421Validators {
         return this._captureInput(event, jInp, eventType, t, 'isRequired', 'app.FormFieldRequired');
    }
    /**
-     * @description Валидация поля формы типа password
+     * @description Валидация длины значения введённого в поле формы
      * Метод вызывается при отправке формы и при вводе в форму значения (события form.submit и input.input)
      * @param {Event} event
      * @param {jQueryInput} inp
      * @param {jQueryInput} jInp
      * @param {String} eventType
      * @param {Function} t Функция локализации (трансляции)
+     * @param {Array} args массив целых значений
     */
     static length(event, jInp, eventType, t, args) {
         return this._captureInput(event, jInp, eventType, t, 'isValidLength', 'app.InvalidPasswordLength', args);
+    }
+    /**
+     * @description Валидация равенства значений, введённых в поля формы
+     * Метод вызывается при отправке формы и при вводе в форму значения (события form.submit и input.input)
+     * @param {Event} event
+     * @param {jQueryInput} inp
+     * @param {jQueryInput} jInp - одно из полей формы
+     * @param {String} eventType
+     * @param {Function} t Функция локализации (трансляции)
+     * @param {Array} args массив строковых значений. В нулевом элементе содержится id второго поля
+    */
+    static equiv(event, jInp, eventType, t, args) {
+        let jInp2 = $('#' + args[0]), val = '', args2 = [];
+        if (jInp2[0]) {
+            val = jInp2.val();
+        }
+        args2[0] = val;
+        return this._captureInput(event, jInp, eventType, t, 'isEquiv', 'app.PasswordsIsDifferent', args2);
+    }
+    /**
+     * @description Получить объект landlib/nodom/validator
+     * @return Validator
+     */
+    static getValidator() {
+        return Validator;
     }
     /**
      * @description Установить вид "Ошибка" и текст ошибки
