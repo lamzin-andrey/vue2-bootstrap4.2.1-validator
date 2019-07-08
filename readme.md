@@ -121,6 +121,14 @@ window.app = new Vue({
 
 `lengthMIN_MAX` (например `length3_16`)
 
+`equiv_fieldId` (например `equiv_password`)
+
+Обеспечивает валидацию равенства значения поля, для которого задан 
+
+`v-b421validators="'equiv_fieldId'"`
+
+со значением поля `fieldId`
+
 ## Зависимости:
 
 Помимо указанных в 
