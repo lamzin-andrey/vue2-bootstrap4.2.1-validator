@@ -27,9 +27,17 @@ class B421Validators {
      * @param {Array}  args аргументы для метода валидации длины
     */
     static _captureInput(event, jInp, eventType, t, method, message, args) {
-        //console.log('Call validation ' + method + '!');
+        //console.log('Call validation ' + method + ' for ', jInp);
         let val = jInp.val(),
             errorText;
+
+        if (jInp.attr('type') == 'checkbox') {
+            val = '';
+            if (jInp.prop('checked')) {
+                val = jInp.val();
+            }
+        }
+        
         jInp.viewVoices = jInp.viewVoices || {};
         jInp.viewVoices[method] = jInp.viewVoices[method] || {neutral:0, error:0, success:0};
         if (!Validator[method](val, args) ) {
