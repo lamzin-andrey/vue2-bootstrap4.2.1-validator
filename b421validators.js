@@ -30,19 +30,55 @@ class B421Validators {
         //console.log('Call validation ' + method + '!');
         let val = jInp.val(),
             errorText;
+        jInp.viewVoices = jInp.viewVoices || {};
+        jInp.viewVoices[method] = jInp.viewVoices[method] || {neutral:0, error:0, success:0};
         if (!Validator[method](val, args) ) {
             if (eventType == 'submit') {
                 errorText = t(message);
+                jInp.viewVoices[method].neutral = 0;
+                jInp.viewVoices[method].success = 0;
+                jInp.viewVoices[method].error = 1;
                 this.viewSetError(jInp, errorText);
                 event.preventDefault();
                 return false;
             } else {
+                jInp.viewVoices[method].error = 0;
                 this.viewClearError(jInp);
+                jInp.viewVoices[method].neutral = 1;
+                jInp.viewVoices[method].success = 0;
                 this.viewClearSuccess(jInp);
             }
         } else {
             if (eventType == 'input') {
-                this.viewSetSuccess(jInp);
+                //console.log(method + ` mean than ${val} is valid!`);
+                jInp.viewVoices[method].success = 1;
+                jInp.viewVoices[method].neutral = 0;
+                
+                //set success view only if all validators return true
+                if (this._isAllValidatorsSuccess(jInp)) {
+                    //console.log(`All validators  mean, than value is valid, set success view`);
+                    this.viewSetSuccess(jInp);
+                }
+
+                
+            }
+        }
+        return true;
+    }
+    /**
+     * @description Проверка, все ли назначенные полю ввода валидаторы вернули true
+     * @param {jQueryInput} jInp
+     * @param Boolean true if all field validators return true
+    */
+    static _isAllValidatorsSuccess(jInp) {
+        if (jInp.viewVoices) {
+            let i, v;
+            for (i in jInp.viewVoices) {
+                v = parseInt(jInp.viewVoices[i].success);
+                if ( !isNaN(v) && v == 0) {
+                    //console.log(`method ${i} mean, than value is invalid, set success view cancel`);
+                    return false;
+                }
             }
         }
         return true;
