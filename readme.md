@@ -119,6 +119,22 @@ window.app = new Vue({
 
 `required`
 
+Может использоваться с не только с текстовыми инпутами но и с полями типа checkbox
+
+```html
+<div class="form-group">
+	<div class="custom-control custom-checkbox small">
+		<input v-b421validators="'required'"
+		type="checkbox" class="custom-control-input" id="agree" value="true">
+		<label class="custom-control-label ml-1" for="agree">
+			I agree to the <a target="_blank" href="#">Privacy Policy</a>
+		</label>
+		<div class="invalid-feedback"></div>
+	</div>
+</div>
+```
+
+
 `lengthMIN_MAX` (например `length3_16`)
 
 `equiv_fieldId` (например `equiv_password`)
