@@ -14,6 +14,17 @@ Vue.directive('b421validators', {
         function _setListener($el, eventName, obj, t, fName, $form, args){
             let a = $form ? $form : $el;
             a.on(eventName, (event) => { return obj[fName](event, $el, eventName, t, args); });
+		}
+		
+		/**
+         * @description Set form reset listener 
+         * Установить обработчик события reset формы
+         * @param {jQueryInput} $el 
+         * @param {B421Validators} obj 
+         * @param {jQueryForm} $form
+         */
+        function _setResetListener($el, obj, $form){
+            $form.on('reset', (event) => { obj.viewClearError($el); obj.viewClearSuccess($el); });
         }
 
         let $el = $(el), $form = $el.parents('form').first(),
@@ -49,6 +60,7 @@ Vue.directive('b421validators', {
                 //вместо этого вот так: (иначе последний листенер два раза назначится)
                 _setListener($el, 'input', validator, vnode.context.$root.$t, func, null, aValidatorMethodArgs);
                 _setListener($el, 'submit', validator, vnode.context.$root.$t, func, $form, aValidatorMethodArgs);
+                _setResetListener($el, validator, $form);
             }
         }
     }
